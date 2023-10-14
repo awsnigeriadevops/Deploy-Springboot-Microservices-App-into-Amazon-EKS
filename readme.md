@@ -46,3 +46,68 @@
 ## Create EKS Cluster with two worker nodes using eksctl
     eksctl create cluster --name study-group-eks --region us-east-1 --nodegroup-name study-group-nodes --node-type t3.small --managed --nodes 2 
 
+## Create ECR Repo
+
+## Install Docker
+    - sudo apt update
+    - sudo apt install docker.io -y
+
+    Add Ubuntu user to Docker group
+    - sudo usermod -aG docker $USER
+    exit the terminal and log back in
+
+    ### Start Docker
+    - sudo systemctl start docker
+    - sudo systemctl enable docker
+    - sudo systemctl status docker
+
+## Add jenkins user to Docker group
+    - sudo usermod -a -G docker jenkins
+
+## Restart Jenkins service
+    - sudo service jenkins restart
+
+## Reload system daemon files
+    - sudo systemctl daemon-reload
+
+## Restart Docker service as well
+    sudo service docker stop
+    sudo service docker start
+
+## Restart Jenkins from the UI and Login again
+
+## Install Plugins inside Jenkins
+    - Docker, Docker Pipeline, Kubernetes CLI
+
+## Create Maven3 variable under Global tool configuration in Jenkins
+    - Name: Maven3
+    - MAVEN_HOME: 
+
+## Create Credentials for connecting to Kubernetes Cluster using kubeconfig
+
+
+
+## Create Pipeline and Copy the pipeline code from below
+   
+## 
+    - eksctl get cluster --name demo-eks --region us-east-1
+    This should confirm that EKS cluster is up and running.
+
+    - Kubectl get nodes
+    - eksctl get cluster --name demo-eks --region us-east-1
+
+## Get config file and save it locally
+    sudo cat /var/lib/jenkins/.kube/config
+
+## Add Credentials in Jenkins
+    - Global Credentials
+    - Kind: Secret file
+
+## Generate Pipeline Syntax
+    - sample step : withKubeConfig
+    - credentials: the saved kubeconfig file
+
+## Check deployment
+    kubectl get pods
+    kubectl get deployments
+    kubectl get services
